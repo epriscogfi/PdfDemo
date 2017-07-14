@@ -1,5 +1,6 @@
 package com.tinsa.demo.pdf.PdfDemo.resource
 
+import com.itextpdf.kernel.geom.PageSize
 import groovy.io.FileType
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.RequestMapping
@@ -25,13 +26,20 @@ class PdfResource{
 
         def dirBase = new File("/home/edu/dossiers/" + id)
 
-        def random = new Random()
-        dirBase.eachFileRecurse (FileType.FILES){file ->
-            println(file.path)
-            file.metaPropertyValues.each {prop ->
-                println(prop.name + ': ' + prop.value + ' - type:' + prop.type )
-            }
-        }
+//        def random = new Random()
+//        dirBase.eachFileRecurse (FileType.FILES){file ->
+//            println(file.path)
+//            file.metaPropertyValues.each {prop ->
+//                println(prop.name + ': ' + prop.value + ' - type:' + prop.type )
+//            }
+//        }
+
+        println('Bottom: ' + PageSize.A4.getBottom())
+        println('Top: ' + PageSize.A4.getTop())
+        println('Left: ' + PageSize.A4.getLeft())
+        println('Right: ' + PageSize.A4.getRight())
+        println('Height: ' + PageSize.A4.getHeight())
+        println('Width: ' + PageSize.A4.getWidth())
 
 
 

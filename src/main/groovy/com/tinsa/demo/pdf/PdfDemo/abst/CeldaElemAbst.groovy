@@ -6,9 +6,19 @@ import groovy.transform.Immutable
 /**
  * Created by edu on 12/07/17.
  */
-@Immutable
 abstract class CeldaElemAbst {
 
     Cell cellElem
 
+    CeldaElemAbst(Cell cellElem) {
+        this.cellElem = cellElem
+    }
+
+    Cell getCellElem() {
+        return cellElem
+    }
+
+    void setCellElem(Cell cellElem) {
+        this.cellElem = cellElem
+    }
 }

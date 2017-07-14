@@ -6,7 +6,7 @@ import com.tinsa.demo.pdf.PdfDemo.abst.ContentAbst
 /**
  * Created by edu on 12/07/17.
  */
-class ContentDocImpl implements ContentAbst{
+class ContentDocImpl extends ContentAbst{
 
     @Override
     CeldaElemAbst generateCelda() {

@@ -7,7 +7,7 @@ import com.tinsa.demo.pdf.PdfDemo.abst.ContentAbst
 /**
  * Created by edu on 12/07/17.
  */
-class ContentImgImpl implements ContentAbst{
+class ContentImgImpl extends ContentAbst{
 
     Image image
 

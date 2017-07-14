@@ -10,6 +10,9 @@ import jdk.nashorn.internal.ir.annotations.Immutable
 class Elems2PDFWrapper {
 
     int elemsPorPagina
-    List<Elem2PDFAbst> iElem2PDFList
+    int elemsPorRow
+
+    List<Elem2PDFAbst> elem2PDFAbstList
+
 
 }

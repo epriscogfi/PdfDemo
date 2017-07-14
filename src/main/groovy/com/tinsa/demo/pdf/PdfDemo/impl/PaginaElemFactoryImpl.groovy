@@ -12,10 +12,10 @@ import com.tinsa.demo.pdf.PdfDemo.abst.Elem2PDFAbst
 import com.tinsa.demo.pdf.PdfDemo.abst.PaginaElemAbst
 import com.tinsa.demo.pdf.PdfDemo.abst.TablaElemAbst
 import com.tinsa.demo.pdf.PdfDemo.elems.PaginaElemImpl
+import com.tinsa.demo.pdf.PdfDemo.elems.ParagraphElemMembrete
 import com.tinsa.demo.pdf.PdfDemo.elems.ParagraphElemTitulo
 import com.tinsa.demo.pdf.PdfDemo.elems.TablaElemEncabezado
 import com.tinsa.demo.pdf.PdfDemo.interfaces.IPaginaElemFactory
-import com.tinsa.demo.pdf.PdfDemo.interfaces.ITablaElemFactory
 
 /**
  * Created by edu on 12/07/17.
@@ -72,14 +72,24 @@ class PaginaElemFactoryImpl implements IPaginaElemFactory{
         PdfPage pdfPage = new PdfPage()
         PdfCanvas pdfCanvas = new  PdfCanvas(pdfPage)
         pdfCanvas.rectangle(PageSize.A4)
+        PageSize.A4.getBottom()
+        PageSize.A4.getTop()
+        PageSize.A4.getLeft()
+        PageSize.A4.getRight()
+        PageSize.A4.getHeight()
+        PageSize.A4.getWidth()
+
+
         pdfCanvas.stroke()
 
         Canvas canvas = new Canvas (pdfCanvas, this.pdfDocument, PageSize.A4)
 
         // Encabezado
+
         TablaElemEncabezado tablaElemEncabezado = new TablaElemEncabezadoFactoryImpl()
-                                                            .withHeighAndWidth()
-                                                            .build()
+                .withHeighAndWidth()
+                .build()
+
         // -> Añadir encabezado a la página
         canvas.add(tablaElemEncabezado.getTableElem())
 
@@ -89,23 +99,30 @@ class PaginaElemFactoryImpl implements IPaginaElemFactory{
         Text text
 
         ParagraphElemTitulo paragraphElemTitulo = new ParagraphElemTituloFactoryImpl()
-                                                            .withRectangle(recTitulo)
-                                                            .withText(text)
-                                                            .build()
+                .withRectangle(recTitulo)
+                .withText(text)
+                .build()
+
         // -> Añadir título a la página
         canvas.add(paragraphElemTitulo.getParagraph())
 
 
         // Membrete
         // -> Añadir membrete a la página
+        ParagraphElemMembrete paragraphElemMembrete = new ParagraphElemMembreteFactoryImpl()
+                .withText()
+                .withRectangle()
+                .build()
 
 
-        // Tabla de contenidos
 
-        TablaElemAbst tablaElemAbst = createTableContent()
 
-        // -> Añadir tabla de contenidos a la página
-        canvas.add(tablaElemAbst.getTableElem())
+        // Tabla(s) de contenido
+        List<TablaElemAbst> tablaElemAbstList = createTableContentList()
+
+        // -> Añadir tabla(s) de contenido a la página
+        tablaElemAbstList.each {elem -> canvas.add(elem.getTableElem())}
+
 
         PaginaElemAbst paginaElem = new PaginaElemImpl(pdfPage)
 
@@ -113,7 +130,7 @@ class PaginaElemFactoryImpl implements IPaginaElemFactory{
 
     }
 
-    TablaElemAbst createTableContent(){
+    List<TablaElemAbst> createTableContentList(){
 
         // Definir las medidas de la tabla
 
@@ -122,18 +139,21 @@ class PaginaElemFactoryImpl implements IPaginaElemFactory{
 
         List<CeldaElemAbst> celdaElemList = new ArrayList<CeldaElemAbst>()
 
-        elem2PDFList.each { elem ->
+        elem2PDFList.each {elem -> celdaElemList.add(elem.generateContent().generateCelda())}
 
-            celdaElemList.add(elem.generateContent().generateCelda())
 
-        }
 
         // Con la lista de celdas, genero la tabla
-
         float height
         float width
 
         TablaElemAbst tablaElemAbst = new TablaElemContentFactoryImpl().withHeighAndWidth(height, width).withCeldaElemList(celdaElemList).buildOne()
+
+    }
+
+    int numTablesNeeded (){
+
+
 
     }
 
