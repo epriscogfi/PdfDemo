@@ -1,0 +1,13 @@
+package com.tinsa.demo.pdf.PdfDemo.abst
+
+import com.itextpdf.layout.element.Paragraph
+import groovy.transform.Immutable
+
+/**
+ * Created by edu on 14/07/17.
+ */
+@Immutable
+abstract class ParagraphElemAbst {
+
+    Paragraph paragraph
+}
