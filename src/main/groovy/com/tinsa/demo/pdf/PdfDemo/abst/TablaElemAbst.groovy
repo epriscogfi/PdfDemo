@@ -10,7 +10,7 @@ abstract class TablaElemAbst {
 
     Table tableElem
 
-    TablaElemAbst(Table tableElem) {
+    TablaElemAbst (Table tableElem) {
         this.tableElem = tableElem
     }
 

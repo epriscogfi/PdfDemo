@@ -1,18 +1,22 @@
 package com.tinsa.demo.pdf.PdfDemo.elems
 
-import com.tinsa.demo.pdf.PdfDemo.abst.Elem2PDFAbst
-import jdk.nashorn.internal.ir.annotations.Immutable
+import com.tinsa.demo.pdf.PdfDemo.interfaces.IElem2PDF
 
 /**
  * Created by edu on 13/07/17.
  */
-@Immutable
+
 class Elems2PDFWrapper {
 
+    String tipoElems
     int elemsPorPagina
-    int elemsPorRow
 
-    List<Elem2PDFAbst> elem2PDFAbstList
+    List<IElem2PDF> elem2PDFAbstList
 
+    void addElemToElemList(IElem2PDF elem2PDF){
+        if (elem2PDFAbstList != null){
+            this.elem2PDFAbstList.add(elem2PDF)
+        }
+    }
 
 }

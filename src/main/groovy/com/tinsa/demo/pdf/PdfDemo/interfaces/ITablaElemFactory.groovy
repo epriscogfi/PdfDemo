@@ -1,7 +1,5 @@
 package com.tinsa.demo.pdf.PdfDemo.interfaces
 
-import com.tinsa.demo.pdf.PdfDemo.abst.CeldaElemAbst
-import com.tinsa.demo.pdf.PdfDemo.abst.Elem2PDFAbst
 import com.tinsa.demo.pdf.PdfDemo.abst.TablaElemAbst
 
 /**
@@ -9,12 +7,12 @@ import com.tinsa.demo.pdf.PdfDemo.abst.TablaElemAbst
  */
 interface ITablaElemFactory {
 
-    ITablaElemFactory withContentList(List<Elem2PDFAbst> elem2PDFList)
-    ITablaElemFactory withHeighAndWidth(float height, float width)
-
-
-    ITablaElemFactory withCeldaElemList (List<CeldaElemAbst> celdaElemList)
-    ITablaElemFactory withCeldaElem(CeldaElemAbst celdaElem)
-    List<TablaElemAbst> build()
-    TablaElemAbst buildOne()
+    ITablaElemFactory withColumns(int numColumns)
+    ITablaElemFactory withNumRows(int numRows)
+    ITablaElemFactory withHeight(float height)
+    ITablaElemFactory withWidth(float width)
+    ITablaElemFactory withMarginTop(float marginTop)
+    ITablaElemFactory withHMarginLeft(float marginLeft)
+    ITablaElemFactory withElemList(List<IElem2PDF> elem2PDFList)
+    TablaElemAbst build()
 }

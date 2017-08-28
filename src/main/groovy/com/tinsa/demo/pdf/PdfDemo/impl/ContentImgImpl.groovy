@@ -1,19 +1,42 @@
 package com.tinsa.demo.pdf.PdfDemo.impl
 
+import com.itextpdf.kernel.geom.Rectangle
 import com.itextpdf.layout.element.Image
 import com.tinsa.demo.pdf.PdfDemo.abst.CeldaElemAbst
-import com.tinsa.demo.pdf.PdfDemo.abst.ContentAbst
+import com.tinsa.demo.pdf.PdfDemo.interfaces.IContent
 
 /**
  * Created by edu on 12/07/17.
  */
-class ContentImgImpl extends ContentAbst{
+
+class ContentImgImpl implements IContent{
+
 
     Image image
 
-    @Override
-    CeldaElemAbst generateCelda() {
-        CeldaElemImgFactoryImpl celdaElemImgFactory = new CeldaElemImgFactoryImpl()
-        return celdaElemImgFactory.withContent(this).buildOne()
+    ContentImgImpl(Image image) {
+        this.image = image
     }
+
+    Image getImage() {
+        return image
+    }
+
+    void setImage(Image image) {
+        this.image = image
+    }
+
+    @Override
+    CeldaElemAbst generateCelda(Rectangle rectangle) {
+
+        return new CeldaElemImgFactoryImpl()
+                .withPadding(18)
+                .withRectangle(rectangle)
+                .withImage(image)
+                .build()
+
+
+    }
+
+
 }

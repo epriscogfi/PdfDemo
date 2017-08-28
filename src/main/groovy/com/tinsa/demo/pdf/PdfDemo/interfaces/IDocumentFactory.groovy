@@ -8,8 +8,10 @@ import com.tinsa.demo.pdf.PdfDemo.elems.Elems2PDFWrapper
  */
 interface IDocumentFactory {
 
-    IDocumentFactory withElems2Pdf(Elems2PDFWrapper elems2PDF)
+    IDocumentFactory withElems2Pdf(Map<String, Elems2PDFWrapper> mapElems2PDF)
+    IDocumentFactory withOrderCategories (Map<String, String> mapOrderCategories)
     IDocumentFactory withDestino(String destino)
+
     DocumentAbst build()
 
 }

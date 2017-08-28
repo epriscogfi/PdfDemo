@@ -11,20 +11,20 @@ import com.tinsa.demo.pdf.PdfDemo.interfaces.IParagraphElemFactory
  */
 class ParagraphElemMargenIzdaFactoryImpl implements IParagraphElemFactory{
 
-    Rectangle rectangle
     Text text
-    ParagraphElemMargenIzda paragraphElemMargenIzda
+    float width
 
-    @Override
-    IParagraphElemFactory withRectangle(Rectangle rectangle) {
-        this.rectangle = rectangle
-        return this
-    }
 
     @Override
     IParagraphElemFactory withText(Text text) {
         this.text = text
-        return null
+        return this
+    }
+
+    @Override
+    IParagraphElemFactory withWidth(float width) {
+        this.width
+        return this
     }
 
     @Override

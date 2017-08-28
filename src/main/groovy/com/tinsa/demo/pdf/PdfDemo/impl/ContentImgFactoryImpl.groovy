@@ -1,7 +1,8 @@
 package com.tinsa.demo.pdf.PdfDemo.impl
 
-import com.tinsa.demo.pdf.PdfDemo.abst.ContentAbst
-import com.tinsa.demo.pdf.PdfDemo.abst.Elem2PDFAbst
+import com.itextpdf.io.image.ImageDataFactory
+import com.itextpdf.layout.element.Image
+import com.tinsa.demo.pdf.PdfDemo.interfaces.IContent
 import com.tinsa.demo.pdf.PdfDemo.interfaces.IContentFactory
 
 /**
@@ -9,24 +10,22 @@ import com.tinsa.demo.pdf.PdfDemo.interfaces.IContentFactory
  */
 class ContentImgFactoryImpl implements IContentFactory{
 
+    String path
 
     @Override
-    IContentFactory withElemList(List<Elem2PDFAbst> elem2PDFList) {
-        return null
+    IContentFactory withPath(String path) {
+        this.path = path
+        return this
     }
 
     @Override
-    IContentFactory withElem(Elem2PDFAbst elem2PD) {
-        return null
+    IContent build() {
+
+        Image image = new Image(ImageDataFactory.create(this.path))
+
+        ContentImgImpl contentImg = new ContentImgImpl(image)
+
+        return contentImg
     }
 
-    @Override
-    List<ContentAbst> build() {
-        return null
-    }
-
-    @Override
-    ContentAbst buildOne() {
-        return null
-    }
 }

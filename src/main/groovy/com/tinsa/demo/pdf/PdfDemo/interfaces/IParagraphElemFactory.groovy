@@ -9,8 +9,9 @@ import com.tinsa.demo.pdf.PdfDemo.abst.ParagraphElemAbst
  */
 interface IParagraphElemFactory {
 
-    IParagraphElemFactory withRectangle (Rectangle rectangle)
+    //IParagraphElemFactory withRectangle (Rectangle rectangle)
     IParagraphElemFactory withText (Text text)
+    IParagraphElemFactory  withWidth (float width)
     ParagraphElemAbst build()
 
 }
